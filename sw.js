@@ -1,5 +1,5 @@
 /* BIG-Infos Grammaire : service worker (hors connexion) */
-const VERSION = 'big-grammaire-v1';
+const VERSION = 'big-grammaire-v2';
 const SHELL = [
   './', './index.html', './manifest.webmanifest',
   './icon-192.png', './icon-512.png',
