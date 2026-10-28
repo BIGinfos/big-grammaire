@@ -1,0 +1,29 @@
+BIG-Infos Grammaire : version installable (PWA)
+=================================================
+
+Contenu du dossier
+  index.html             l'application (identique, + installation et hors connexion)
+  manifest.webmanifest   nom, icônes, couleurs de l'app
+  sw.js                  fonctionnement hors connexion
+                   icônes (Android, iPhone, ordinateur)
+
+IMPORTANT : pour être installable, le dossier doit être mis en ligne en HTTPS.
+Ouvrir index.html directement depuis l'ordinateur (file://) ne permet PAS l'installation.
+
+Mise en ligne gratuite en 1 minute (au choix)
+  • Netlify Drop : https://app.netlify.com/drop  -> glisser le dossier entier.
+  • GitHub Pages : créer un dépôt, y envoyer tous les fichiers, Settings > Pages > activer.
+  • Cloudflare Pages / Vercel : importer le dossier.
+Garder les fichiers ensemble, sans changer les noms.
+
+Installer
+  • Android (Chrome) : ouvrir le lien, toucher « 📲 Installer » (ou menu ⋮ > Installer l'application).
+  • iPhone / iPad (Safari) : Partager > « Sur l'écran d'accueil ».
+  • Ordinateur (Chrome / Edge) : icône d'installation dans la barre d'adresse.
+
+Hors connexion
+  Après la première ouverture, toute l'application marche sans Internet.
+  L'import PDF / photo a besoin d'Internet la première fois ; ensuite ses outils restent en cache.
+
+Mise à jour
+  Remplacer index.html en ligne, puis dans sw.js changer 'big-grammaire-v1' en 'big-grammaire-v2'.
