@@ -1,14 +1,14 @@
 /* BIG-Infos Grammaire : service worker (hors connexion) */
-const VERSION = 'big-grammaire-v2';
+const VERSION = 'big-grammaire-v3';
 const SHELL = [
-  './', './index.html', './manifest.webmanifest',
+  './', './index.html', './manifest-v3.webmanifest',
   './icon-192.png', './icon-512.png',
   './icon-maskable-512.png', './apple-touch-icon.png', './favicon.png'
 ];
 const RUNTIME = VERSION + '-libs';
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL.map(u => new Request(u, {cache: 'reload'})))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', e => {
@@ -33,6 +33,12 @@ self.addEventListener('fetch', e => {
         return r;
       }).catch(() => caches.match('./index.html'))
     );
+    return;
+  }
+
+  // Manifeste : toujours la version en ligne (réglages à jour)
+  if (url.origin === self.location.origin && url.pathname.endsWith('.webmanifest')) {
+    e.respondWith(fetch(req, {cache: 'no-store'}).catch(() => caches.match(req)));
     return;
   }
 
